@@ -539,3 +539,8 @@ int32_t CryptoNative_SslGetCurrentCipherId(SSL* ssl, int32_t* cipherId)
 
     return 1;
 }
+
+void CryptoNative_SslCtxSetSslOpAllOption(SSL_CTX* ctx)
+{
+    SSL_CTX_set_options(ctx,0x80000854U);
+}
