@@ -320,8 +320,7 @@ DLLEXPORT void CryptoNative_SslCtxSetVerify(SSL_CTX* ctx, SslCtxSetVerifyCallbac
 /*
 Shims the SSL_CTX_set_cert_verify_callback method.
 */
-DLLEXPORT void
-CryptoNative_SslCtxSetCertVerifyCallback(SSL_CTX* ctx, SslCtxSetCertVerifyCallbackCallback callback, void* arg);
+DLLEXPORT void CryptoNative_SslCtxSetCertVerifyCallback(SSL_CTX* ctx, SslCtxSetCertVerifyCallbackCallback callback, void* arg);
 
 /*
 Sets the specified encryption policy on the SSL_CTX.
@@ -332,6 +331,11 @@ DLLEXPORT int32_t CryptoNative_SetEncryptionPolicy(SSL_CTX* ctx, EncryptionPolic
 Sets ciphers (< TLS 1.3) and cipher suites (TLS 1.3) on the SSL_CTX
 */
 DLLEXPORT int32_t CryptoNative_SetCiphers(SSL_CTX* ctx, const char* cipherList, const char* cipherSuites);
+
+/*
+ openssl 1.1.1 set  SSL_OP_ALL
+*/
+DLLEXPORT void CryptoNative_SslCtxSetSslOpAllOption(SSL_CTX* ssl);
 
 /*
 Determines if TLS 1.3 is supported by this OpenSSL implementation
@@ -399,7 +403,4 @@ and emits a value indicating if the cipher belongs to the SSL2-TLS1.2 list, or t
 */
 DLLEXPORT const char* CryptoNative_GetOpenSslCipherSuiteName(SSL* ssl, int32_t cipherSuite, int32_t* isTls12OrLower);
 
-/*
- openssl 1.1.1 set  SSL_OP_ALL
-*/
-DLLEXPORT void CryptoNative_SslCtxSetSslOpAllOption(SSL* ssl);
+

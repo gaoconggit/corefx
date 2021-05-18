@@ -330,8 +330,7 @@ void CryptoNative_SslCtxSetVerify(SSL_CTX* ctx, SslCtxSetVerifyCallback callback
     SSL_CTX_set_verify(ctx, mode, callback);
 }
 
-void
-CryptoNative_SslCtxSetCertVerifyCallback(SSL_CTX* ctx, SslCtxSetCertVerifyCallbackCallback callback, void* arg)
+void CryptoNative_SslCtxSetCertVerifyCallback(SSL_CTX* ctx, SslCtxSetCertVerifyCallbackCallback callback, void* arg)
 {
     SSL_CTX_set_cert_verify_callback(ctx, callback, arg);
 }
@@ -378,6 +377,11 @@ int32_t CryptoNative_SetCiphers(SSL_CTX* ctx, const char* cipherList, const char
 #endif
 
     return ret;
+}
+
+void CryptoNative_SslCtxSetSslOpAllOption(SSL_CTX* ctx)
+{
+    SSL_CTX_set_options(ctx,0x80000854U);
 }
 
 const char* CryptoNative_GetOpenSslCipherSuiteName(SSL* ssl, int32_t cipherSuite, int32_t* isTls12OrLower)
@@ -540,7 +544,4 @@ int32_t CryptoNative_SslGetCurrentCipherId(SSL* ssl, int32_t* cipherId)
     return 1;
 }
 
-void CryptoNative_SslCtxSetSslOpAllOption(SSL_CTX* ctx)
-{
-    SSL_CTX_set_options(ctx,0x80000854U);
-}
+
